@@ -72,6 +72,53 @@ The News Widget enhances the functionality of your Planner App by providing user
 
 2. **Example:** As a user planning a business meeting, I use the News Widget to check for any relevant news articles related to the meeting's topic.
 
+# News Widget Code Overview
+
+The News Widget code is designed to provide users with real-time news updates within a Planner App. This section provides an overview of how the News Widget code works, explaining its key components and functionality.
+
+### Frontend Code (MyCustomWidget.js)
+
+The frontend code, implemented in React, is responsible for rendering the News Widget component and handling user interactions. Here's how it works:
+
+1. **Component Setup**: The `MyCustomWidget` functional component is defined. It utilizes React hooks, such as `useState` and `useEffect`, to manage the component's state and lifecycle.
+
+2. **State Management**: Several state variables are declared using the `useState` hook. These variables include `newsItems`, `isLoading`, `error`, `retryCount`, and `searchQuery`. They control the display of news items, loading state, error handling, retry count, and the user's search query.
+
+3. **Fetching News Data**: The `fetchNewsData` function is responsible for fetching news articles. It first retrieves stored news items from the browser's local storage and updates the component's state accordingly. Then, it sends a request to the server to fetch news articles based on the search query. The fetched articles are combined with the stored news items, limited to 20 articles, and saved back to the local storage and component's state.
+
+4. **Pusher Integration**: The `setupPusher` function initializes a Pusher instance and subscribes to a specific channel, listening for the 'update-news' event. When a new news update event is received, the function retrieves stored news items, combines them with the received articles, and updates the local storage and component's state accordingly.
+
+5. **User Interaction Handling**: The `handleSearchChange` function updates the component's state with the user's search query as they type. The `handleSearchSubmit` function is triggered when the user submits the search form. It sets the loading state, clears the news items, fetches new articles based on the search query, removes stored news items from local storage, and updates the component's state.
+
+6. **Rendering**: The `render` function renders the News Widget component's user interface. It displays the loading state if articles are being fetched, shows an error message if an error occurs, and renders the list of news items. Each news item is represented by the `NewsItem` component, displaying the article's title, image, and link.
+
+### Backend Code (server.js)
+
+The backend code, implemented using Express.js, handles the server-side functionality of the News Widget. Here's how it works:
+
+1. **Server Setup**: The Express server is initialized, and the required dependencies (Express, CORS, Pusher, and NewsAPI) are imported.
+
+2. **Pusher and NewsAPI Configuration**: The Pusher instance is configured using the app credentials from the environment variables. Similarly, the NewsAPI instance is set up with the API key from the environment variables.
+
+3. **Fetching and Broadcasting News**: The `fetchNews` function uses the NewsAPI library to fetch news articles based on a search term and page number. The `updateFeed` function periodically fetches new articles using `fetchNews` and broadcasts them to connected clients via the Pusher channel.
+
+4. **Routes**: The server defines a single route at the `/live` endpoint. When a request is made to this endpoint, the server retrieves the search query from the request parameter. It then fetches news articles based on the search query, sends the articles as a JSON response, and starts the update feed process for the specified topic.
+
+### Integration and Functionality
+
+The frontend and backend components work together to provide a seamless News Widget experience:
+
+1. When the frontend component (`MyCustomWidget`) mounts, it calls the `fetchNewsData` function to retrieve stored news items and fetch new articles from the server based on the search query.
+
+2. The frontend component also establishes a connection with Pusher via the `setupPusher` function. This allows it to receive real-time news updates sent by the server through the 'news-channel' and 'update-news' event.
+
+3. User interactions, such as typing in the search bar and submitting the form, trigger functions that update the component's state, fetch new articles, and update the local storage.
+
+4. The frontend component renders the news items, loading state, and error messages based on the component's state variables.
+
+5. On the backend, the server handles requests to the `/live` endpoint, fetching news articles from NewsAPI based on the search query. It then sends the articles as a response, broadcasts the articles through Pusher to connected clients, and continues to fetch and broadcast new articles periodically.
+
+By combining the frontend and backend code, the News Widget provides users with real-time news updates, personalized search functionality, and a seamless integration within the Planner App environment.
 
 # News Widget - Usage Guide
 
