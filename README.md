@@ -22,7 +22,7 @@ Timer Widget: While waiting for a timer to complete, users can catch up on the l
 Time and Date Widget: The News Widget complements the time and date information by presenting real-time news updates, allowing users to stay up to date while managing their schedules.
 Therefore, incorporating a News Widget into a Planner App enhances the user experience, increases productivity, broadens engagement, and complements the existing set of widgets. It provides users with valuable news information within a unified app environment, ensuring they stay informed without disrupting their planning and organizing activities.
 
-### News Widget - User Guide
+# News Widget - User Guide
 
 The News Widget is designed to provide users with up-to-date news articles within your application. This user guide explains how users can utilize the News Widget and provides examples for better understanding.
 
@@ -73,7 +73,7 @@ The News Widget enhances the functionality of your Planner App by providing user
 2. **Example:** As a user planning a business meeting, I use the News Widget to check for any relevant news articles related to the meeting's topic.
 
 
-### News Widget - Usage Guide
+# News Widget - Usage Guide
 
 The News Widget consists of two parts: the frontend component written in React (MyCustomWidget.js) and the backend server (server.js). This guide will explain how to use and integrate the News Widget into your application.
 
@@ -160,7 +160,7 @@ The News Widget can be further customized to suit your specific requirements:
 
 By following these steps, you can successfully integrate the News Widget into your application. Users will be able to view and interact with the latest news articles, enhancing their experience and keeping them informed within your app's environment. Feel free to customize and extend the widget to align with your app's unique features and design.
 
-### See Also
+# See Also
 
 In the project directory, you can run:
 
