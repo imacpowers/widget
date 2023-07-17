@@ -20,7 +20,7 @@ const storedNewsItems = JSON.parse(localStorage.getItem('newsItems')) || [];
 setNewsItems(storedNewsItems);
 setIsLoading(false);
 
-fetch(`http://localhost:5000/live?search=${searchQuery}`)
+fetch(`https://imperialwidget1.vercel.app/live?search=${searchQuery}`)
   .then(response => response.json())
   .then(articles => {
     const updatedNewsItems = [...articles, ...storedNewsItems].slice(0, 20);
